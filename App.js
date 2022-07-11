@@ -1,20 +1,27 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useState } from "react";
+import Main from "./components/Main";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import * as SplashScreen from "expo-splash-screen";
+
+const fonts = () =>
+  Font.loadAsync({
+    Tapestry: require("./assets/fonts/Tapestry-Regular.ttf"),
+    "Water Brush": require("./assets/fonts/WaterBrush-Regular.ttf"),
+  });
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+  const [isFontReady, setState] = useState(false);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  if (!isFontReady) {
+    return (
+      <AppLoading
+        startAsync={fonts}
+        onFinish={() => setState(true)}
+        onError={console.warn}
+      />
+    );
+  } else {
+    return <Main />;
+  }
+}

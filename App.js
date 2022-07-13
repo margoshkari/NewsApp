@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import Main from "./components/Main";
+import MainStack from "./navigate";
 import * as Font from "expo-font";
 import AppLoading from "expo-app-loading";
-import * as SplashScreen from "expo-splash-screen";
 
 const fonts = () =>
   Font.loadAsync({
@@ -22,6 +21,6 @@ export default function App() {
       />
     );
   } else {
-    return <Main />;
+    return <MainStack />;
   }
 }

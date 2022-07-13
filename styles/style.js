@@ -7,7 +7,7 @@ export const gStyle = StyleSheet.create({
   },
   title: {
     fontSize: 25,
-    color: "gray",
+    color: "#5e5e5e",
     textAlign: "center",
     marginTop: "10%",
     fontFamily: "Tapestry",

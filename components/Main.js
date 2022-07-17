@@ -7,8 +7,10 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  Modal,
 } from "react-native";
 import { gStyle } from "../styles/style";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Main({ navigation }) {
   // const LoadScene = () => {
@@ -38,8 +40,31 @@ export default function Main({ navigation }) {
       img: "https://img.freepik.com/free-vector/instagram-icon_1057-2227.jpg",
     },
   ]);
+
+  const [modalWindow, setModalWindow] = useState(false);
+
   return (
     <View style={gStyle.main}>
+      <Modal visible={modalWindow}>
+        <View>
+          <Ionicons
+            name="close-circle"
+            size={31}
+            color="red"
+            style={styles.icon}
+            onPress={() => setModalWindow(false)}
+          />
+          <Text style={gStyle.title}>Adding Form</Text>
+        </View>
+      </Modal>
+
+      <Ionicons
+        name="add-circle"
+        size={31}
+        color="green"
+        style={styles.icon}
+        onPress={() => setModalWindow(true)}
+      />
       <Text style={[gStyle.title, { marginBottom: "10%", marginTop: 0 }]}>
         Main page
       </Text>
@@ -79,4 +104,8 @@ export default function Main({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  icon: {
+    textAlign: "center",
+  },
+});

@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { gStyle } from "../styles/style";
 import { Ionicons } from "@expo/vector-icons";
+import Form from "./Form";
 
 export default function Main({ navigation }) {
   // const LoadScene = () => {
@@ -43,6 +44,17 @@ export default function Main({ navigation }) {
 
   const [modalWindow, setModalWindow] = useState(false);
 
+  const addArticle = (article) => {
+    if (article.full != "") {
+      article.key = Math.random().toString();
+      setNews((list) => {
+        console.log(article);
+        return [article, ...list];
+      });
+      setModalWindow(false);
+    }
+  };
+
   return (
     <View style={gStyle.main}>
       <Modal visible={modalWindow}>
@@ -55,6 +67,7 @@ export default function Main({ navigation }) {
             onPress={() => setModalWindow(false)}
           />
           <Text style={gStyle.title}>Adding Form</Text>
+          <Form addArticle={addArticle} />
         </View>
       </Modal>
 
